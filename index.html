@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="love-shape-background"></div>
+  <div class="container" id="main-content">
+    <h1>Are you my baby?</h1>
+    <div class="buttons">
+      <button class="yes-button" onclick="showContent('congratulations')">Yes</button>
+      <button class="no-button" onclick="showContent('try-again')">No</button>
+    </div>
+  </div>
+
+  <div class="container" id="congratulations">
+    <div class="confetti"></div>
+    <h1>Congratulations! You won the best Baby of the year Award
+        And i love you !
+      Happy children's Day</h1>
+  </div>
+
+  <div class="container" id="try-again">
+    <h1>Ode! Go back and choose yes!</h1>
+  </div>
+
+  <script>
+    function showContent(id) {
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('congratulations').style.display = 'none';
+      document.getElementById('try-again').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+      if (id === 'congratulations') {
+        startConfetti();
+      }
+    }
+
+    function startConfetti() {
+      const confettiContainer = document.querySelector('.confetti');
+      confettiContainer.innerHTML = '';
+      const colors = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33A8'];
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti-piece');
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confettiContainer.appendChild(confetti);
+      }
+    }
+  </script>
+</body>
+</html>
